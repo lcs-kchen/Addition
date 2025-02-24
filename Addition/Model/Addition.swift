@@ -7,8 +7,9 @@
 
 import Foundation
 
-struct Addition {
+struct Addition: Identifiable {
     //Mark: Stored Properties
+    let id = UUID()
     var Augend: Double
     var Addend: Double
     

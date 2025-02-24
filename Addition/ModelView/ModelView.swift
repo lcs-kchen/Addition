@@ -9,6 +9,8 @@ import Foundation
 @Observable
 
 class AdditionViewModel {
+    
+    var resultHistory: [Addition] = []
     //Mark: Stored Properties
     var providedAugend: String
     var providedAddend: String
@@ -41,6 +43,22 @@ class AdditionViewModel {
         self.providedAugend = providedAugend
         self.providedAddend = providedAddend
         self.recoverySuggestion = recoverySuggestion
+    }
+    // MARK: Function(s)
+    func saveResult() {
+        
+        // When there is a valid power based on user input...
+        if let addition = self.addition {
+            
+            // ... save that evaluated power at the top of the history of
+            // results
+            //
+            // NOTE: By inserting the newly evaluated power at the top of
+            //       the array, we ensure the user sees
+            //       the most recent result first.
+            self.resultHistory.insert(addition, at: 0)
+        }
+        
     }
 }
 

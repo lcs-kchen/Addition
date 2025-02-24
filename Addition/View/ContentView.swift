@@ -33,6 +33,15 @@ struct ContentView: View {
                     Text("\(addition.Sum.formatted())")
                         .font(.system(size: 40))
                 }
+                Button {
+                    viewModel.saveResult()
+                    // DEBUG: Show how many items are in the resultHistory array
+                    print("There are \(viewModel.resultHistory.count) elements in the resultHistory array.")
+                } label: {
+                    Text("Save")
+                }
+                .buttonStyle(.borderedProminent)
+                .padding(.bottom)
                 
                 
                 
@@ -56,12 +65,23 @@ struct ContentView: View {
             TextField("Addend", text: $viewModel.providedAddend)
                 .textFieldStyle(.roundedBorder)
             
-            // Extra space at bottom
-            Spacer()
+            
+            HStack {
+                Text("History")
+                    .bold()
+                Spacer()
+            }
+            .padding(.vertical)
+             
+            // Iterate over the history of results
+            List(viewModel.resultHistory) { priorResult in
+                ItemView(addition: priorResult)
+            }
+            .listStyle(.plain)
+        }
         }
     }
     
-}
 
 #Preview {
     ContentView()
