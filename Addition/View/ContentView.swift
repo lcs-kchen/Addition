@@ -73,6 +73,13 @@ struct ContentView: View {
             }
             .padding(.vertical)
              
+            
+            HStack {
+                Text("History")
+                    .bold()
+                Spacer()
+            }
+            .padding(.vertical)
             // Iterate over the history of results
             List(viewModel.resultHistory) { priorResult in
                 ItemView(addition: priorResult)
